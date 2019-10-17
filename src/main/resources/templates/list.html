@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Jobs</title>
+    <div th:replace="base :: head"></div>
+</head>
+<body>
+<nav th:replace="base :: navBar"></nav>
+<br>
+<div class="card text-center w-50">
+    <div class="card-header">
+        "Craigslist"
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Job Postings</h5>
+        <table class="table table-sm table-hover">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th>Title</th>
+                <th>Date Posted</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="job,iter : ${jobs}">
+                <td th:text="${iter.index+1}"></td>
+                <td th:text="${job.title}"></td>
+                <td th:text="${#dates.format(job.postedDate, 'MMM-dd-yyyy')}"></td>
+                <td>
+                    <a class="btn btn-success" role="button" th:href="@{/update/{id}(id=${job.id})}">Update</a>
+                    <a class="btn btn-warning" role="button" th:href="@{/detail/{id}(id=${job.id})}">Detail</a>
+                    <a class="btn btn-danger" role="button" th:href="@{/delete/{id}(id=${job.id})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/add" class="btn btn-primary">Add Job</a>
+    </div>
+</div>
+
+<footer th:replace="base :: footer"></footer>
+<div th:replace="base :: bootstrapScripts"></div>
+</body>
+</html>

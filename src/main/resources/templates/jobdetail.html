@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Jobs</title>
+    <div th:replace="base :: head"></div>
+</head>
+<body>
+<nav th:replace="base :: navBar"></nav>
+<br>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Details</h1>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1" th:text="${job.title}"></h5>
+                    <small th:text="${#dates.format(job.postedDate, 'MMM-dd-yyyy')}"></small>
+                </div>
+                <p class="mb-1" th:text="${job.description}"></p>
+                <small th:text="${job.author}"></small>
+                <p>
+                    <small th:text="${job.formattedPhone()}"></small>
+                </p>
+            </a>
+        </div>
+        <br>
+        <a href="/add" class="btn btn-primary">Add Job</a>
+    </div>
+</div>
+<footer th:replace="base :: footer"></footer>
+<div th:replace="base :: bootstrapScripts"></div>
+</body>
+</html>

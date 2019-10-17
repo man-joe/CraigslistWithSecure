@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Jobs</title>
+    <div th:replace="base :: head"></div>
+</head>
+<body>
+<nav th:replace="base :: navBar"></nav>
+<br>
+<div class="container">
+    <div class="jumbotron">
+        <h1>Add a Job</h1>
+        <hr class="my-4">
+        <form action="#" th:action="@{/process}" th:object="${job}" method="post" th:align="center">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Title" th:field="*{title}">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Author" th:field="*{author}">
+                </div>
+                <div class="col-2">
+                    <input type="text"  pattern="\d*" maxlength="10" class="form-control" placeholder="Phone" th:field="*{phone}">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-7">
+                    <div>
+                        <textarea style="width:100%" cols="120" rows="5" placeholder="Description..." th:field="*{description}"></textarea>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <input type="date" class="form-control" placeholder="Date" name="postedDate">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <button type="submit" onclick="confirmation()" class="btn btn-warning">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<footer th:replace="base :: footer"></footer>
+<div th:replace="base :: bootstrapScripts"></div>
+<script th:src="@{/js/test.js}"></script>
+</body>
+</html>
