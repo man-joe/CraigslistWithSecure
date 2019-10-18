@@ -3,25 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background-image: url("https://images.pond5.com/job-search-related-words-background-footage-000998921_prevstill.jpeg");
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            font-family: 'Archivo Narrow', sans-serif;
+        }
+
+        .card {
+            margin: 0 auto; /* Added */
+            float: none; /* Added */
+            margin-bottom: 10px; /* Added */
+            opacity: .8;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<h1>Login Page</h1>
-<div th:if="${param.error}">
-    Invalid username or password
+<nav th:replace="base :: navBar"></nav>
+<br>
+<div class="container">
+    <div class="jumbotron">
+        <h4>Login Page</h4>
+        <hr class="my-4">
+        <div th:if="${param.error}">
+            Invalid username or password
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out
+        </div>
+
+        <form th:action="@{/login}" method="post" class="justify-content-center">
+            <div class="form-group row">
+                <label for="username" class="col-sm-2 col-form-label">User Name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="username" class="form-control" name="username">
+                    </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">Password:</label>
+                    <div class="col-sm-10">
+                        <input type="password" id="password" class="form-control" name="password">
+                    </div>
+            </div>
+            <div class="form-group row">
+                <button type="submit" class="btn btn-warning">Log in</button>
+            </div>
+        </form>
+    </div>
 </div>
-<div th:if="${param.logout}">
-    You have been logged out
-</div>
-<form th:action="@{/login}" method="post">
-    <div>
-        <label>User Name: <input type="text" name="username"></label>
-    </div>
-    <div>
-        <label>Password: <input type="password" name="password"></label>
-    </div>
-    <div>
-        <input type="submit" value="Sign in">
-    </div>
-</form>
+
+<footer th:replace="base :: footer"></footer>
+<div th:replace="base :: bootstrapScripts"></div>
 </body>
 </html>

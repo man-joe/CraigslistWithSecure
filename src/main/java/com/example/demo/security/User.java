@@ -13,9 +13,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotEmpty
     @Column(name="email", nullable = false)
     private String email;
 
+    @NotEmpty
     @Column(name = "password")
     private String password;
 
@@ -23,12 +25,14 @@ public class User {
     @Column(name = "first_name")
     private String firstName;
 
+    @NotEmpty
     @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "enabled")
     private boolean enabled;
 
+    @NotEmpty
     @Column(name = "username")
     private String username;
 
@@ -70,7 +74,10 @@ public class User {
 
     public void setPassword(String password) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.password = passwordEncoder.encode(password);
+        if(password.equals(""))
+            this.password = "";
+        else
+            this.password = passwordEncoder.encode(password);
     }
 
     public String getFirstName() {
